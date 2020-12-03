@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class JeChangeDeCoordonnees2 {
 
@@ -39,7 +40,7 @@ public class JeChangeDeCoordonnees2 {
 	public static String exportTelPortableContact;
 	public static String exportEmailContact;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		try {
 			final Workbook workbook = WorkbookFactory.create(new File("ExportExcel2.xlsx"));
@@ -51,7 +52,6 @@ public class JeChangeDeCoordonnees2 {
 			int numColonne12 = 12, numColonne13 = 13, numColonne14 = 14, numColonne15 = 15, numColonne16 = 16;
 
 			Row row = feuille.getRow(index++);
-			System.out.println("This excel file contains: ");
 			System.out.println("The line number is: "+index);
 
 			while (row != null) {
@@ -140,9 +140,12 @@ public class JeChangeDeCoordonnees2 {
 			e.printStackTrace();
 		}
 
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver2.exe");
 		WebDriver driver = new ChromeDriver();
+//		System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
+//		WebDriver driver = new FirefoxDriver();
 		driver.get("https://pre-prod.psl.service-public.fr/mademarche/JeChangeDeCoordonnees/demarche?execution=e1s1");
+		Thread.sleep(3000);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
@@ -163,7 +166,8 @@ public class JeChangeDeCoordonnees2 {
 		driver.findElement(By.id("inputAdresseFrVoie_adresseFrAvant")).sendKeys(exportNumLibelleVoie);
 		
 		driver.findElement(By.id("inputAdresseFrLocaliteCP_adresseFrAvant")).sendKeys(exportCodePostalLocalite);
-		driver.findElement(By.id("inputContactPersonnelTelephone_contactPersoAvant")).sendKeys(exportAncienNumTelFixe);
+		//driver.findElement(By.id("inputContactPersonnelTelephone_contactPersoAvant")).sendKeys(exportAncienNumTelFixe);
+		driver.findElement(By.id("input_autresCoordonnees2")).sendKeys(exportAncienNumTelFixe);
 
 		driver.findElement(By.id("suivant")).click();
 		driver.findElement(By.id("suivant")).click();

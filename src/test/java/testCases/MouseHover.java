@@ -13,7 +13,7 @@ public class MouseHover {
 	public static void main(String[] args) throws InterruptedException {
 
 		// Create a new instance of the chrome driver
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver2.exe");
 		WebDriver driver = new ChromeDriver();
 
 		// Implicit wait
@@ -28,10 +28,15 @@ public class MouseHover {
 
 		Actions actions = new Actions(driver);
 		WebElement mouseHover = driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/a"));
-
 		actions.moveToElement(mouseHover).perform();
+		
+		WebElement mouseHover1 = driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/a"));
+		actions.moveToElement(mouseHover1).perform();
+		
+		WebElement mouseHover2 = driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/ul/li[2]/a"));
+		actions.moveToElement(mouseHover2).perform();
 
-		driver.close();
+		//driver.close();
 
 	}
 }
